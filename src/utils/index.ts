@@ -38,3 +38,12 @@ export function getProductsByCode(
   // uses array.filter to select only products with code
   return products.filter((p) => p.code === code);
 }
+
+/**
+ *
+ * @param num Number to round down by two
+ * @returns rounded down number
+ */
+export function roundToTwo(num: number): number {
+  return Math.floor((num + Number.EPSILON) * 100) / 100;
+}

@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   calculateBuyOneGetSecondHalfOff,
   getProductsByCode,
+  roundToTwo,
 } from "../../src/utils";
 import {
   blueWidgetProduct,
@@ -77,5 +78,34 @@ describe("getProductsByCode", () => {
   it("should return an empty array when no matches", () => {
     const result = getProductsByCode(mockProducts, "" as Product["code"]);
     expect(result).toEqual([]);
+  });
+} );
+
+describe("roundToTwo", () => {
+  it("should round down to 2 decimal places correctly", () => {
+    expect(roundToTwo(54.375)).toBe(54.37);
+    expect(roundToTwo(54.379)).toBe(54.37);
+    expect(roundToTwo(54.381)).toBe(54.38);
+  });
+
+  it("should handle whole numbers", () => {
+    expect(roundToTwo(10)).toBe(10);
+    expect(roundToTwo(99)).toBe(99);
+  });
+
+  it("should handle numbers with fewer than 2 decimal places", () => {
+    expect(roundToTwo(12.3)).toBe(12.3);
+    expect(roundToTwo(7.0)).toBe(7);
+  });
+
+  it("should handle edge cases at exact decimal boundaries", () => {
+    expect(roundToTwo(1.999)).toBe(1.99);
+    expect(roundToTwo(2.001)).toBe(2.0);
+  });
+
+  it("should handle negative numbers correctly", () => {
+    expect(roundToTwo(-54.375)).toBe(-54.38);
+    expect(roundToTwo(-54.379)).toBe(-54.38);
+    expect(roundToTwo(-54.381)).toBe(-54.39);
   });
 });

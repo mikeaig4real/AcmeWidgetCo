@@ -2,6 +2,7 @@ import { IDeliveryRule } from "../delivery/IDeliveryRule";
 import { Product, ProductCodes } from "../products/Product";
 import { LoggerService } from "./LoggerService";
 import { IOffer } from "../offers/IOffer";
+import { roundToTwo } from "../utils";
 
 /**
  * Service to manage a shopping basket.
@@ -65,14 +66,14 @@ export class BasketService {
     this.logger.log("total", `After Discount: ${afterDiscount}`);
 
     // charge for delivery based on rule given
-    const delivery = this.deliveryRule.calculate(afterDiscount);
-    this.logger.log("total", `Delivery charge: ${delivery}`);
+    const deliveryCost = this.deliveryRule.calculate(afterDiscount);
+    this.logger.log("total", `Delivery charge: ${deliveryCost}`);
 
-    // calculate the final total (subtotal less discount plus delivery)
-    const final = +(afterDiscount + delivery).toFixed(2);
-    this.logger.log("total", `Final total: ${final}`);
+    // calculate the final total (subtotal less discounts plus delivery)
+    const finalTotal = roundToTwo(afterDiscount + deliveryCost);
+    this.logger.log("total", `Final total: ${finalTotal}`);
 
     // return final total
-    return final;
+    return finalTotal;
   }
 }
