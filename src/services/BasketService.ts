@@ -1,3 +1,4 @@
+import { IDeliveryRule } from "../delivery/IDeliveryRule";
 import { Product, ProductCodes } from "../products/Product";
 import { LoggerService } from "./LoggerService";
 
@@ -20,6 +21,7 @@ export class BasketService {
    */
   constructor(
     private catalogue: Record<ProductCodes, Product>,
+    private deliveryRule: IDeliveryRule
   ) {}
 
   /**
@@ -44,7 +46,19 @@ export class BasketService {
    */
   total (): number
   {
-    this.logger.log("total", `Return from total`, 0);
-    return 0
+    // calculate subtotal - sum of all item prices
+    const subTotal = this.items.reduce((sum, p) => sum + p.price, 0);
+    this.logger.log("total", `SubTotal calculated: ${subTotal}`);
+
+    // charge for delivery based on rule given
+    const delivery = this.deliveryRule.calculate(subTotal);
+    this.logger.log("total", `Delivery charge: ${delivery}`);
+
+    // calculate the final total
+    const final = +(subTotal + delivery).toFixed(2);
+    this.logger.log("total", `Final total: ${final}`);
+
+    // return final total
+    return final;
   }
 }

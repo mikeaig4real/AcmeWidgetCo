@@ -23,12 +23,21 @@ acmewidgetco/
             │     ├─ products/
             │     │ ├─ sampleProducts.ts # Product samples
             │     │ └─ Product.ts # Product types
+            │     ├─ delivery/
+            │     │ ├─ IDeliveryRule.ts # Delivery interface
+            │     │ └─ StandardDelivery.ts # Standard delivery rule implementation
             │     ├─ services/
             │     │ └─ BasketService.ts # Basket service logic
             │     │ └─ LoggerService.ts # Logger service for simple debugging
+            │     ├─ utils/
+            │       └─ index.ts # Utility/Helper functions
             ├─ tests/
-            │     ├─ services/
+            │     ├─ delivery/
+            │     │ └─ StandardDelivery.test.ts # Tests around StandardDelivery
+            │     └─ services/
             │     └─ BasketService.test.ts # Tests around BasketService
+            │     └─ utils/
+            │     └─ index.test.ts # Tests around utility functions
             ├─ package.json
             └─ tsconfig.json
 ```
