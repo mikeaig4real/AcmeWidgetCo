@@ -51,10 +51,15 @@ acmewidgetco/
 
 ## Installation
 
-- Clone the repository:
+- Clone the repository (Using Github - Skip if you already have raw files):
 
 ```bash
 git clone https://github.com/mikeaig4real/AcmeWidgetCo.git
+```
+
+- Change directory into project root (Skip if you're inside project directory - Check with `ls` command):
+
+```bash
 cd AcmeWidgetCo
 ```
 
