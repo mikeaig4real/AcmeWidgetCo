@@ -26,6 +26,9 @@ acmewidgetco/
             │     ├─ delivery/
             │     │ ├─ IDeliveryRule.ts # Delivery interface
             │     │ └─ StandardDelivery.ts # Standard delivery rule implementation
+            │     ├─ offers/
+            │     │ ├─ IOffer.ts # Offer interface
+            │     │ └─ RedWidgetOffer.ts # Red Widget offer implementation
             │     ├─ services/
             │     │ └─ BasketService.ts # Basket service logic
             │     │ └─ LoggerService.ts # Logger service for simple debugging
@@ -34,10 +37,12 @@ acmewidgetco/
             ├─ tests/
             │     ├─ delivery/
             │     │ └─ StandardDelivery.test.ts # Tests around StandardDelivery
-            │     └─ services/
-            │     └─ BasketService.test.ts # Tests around BasketService
+            │     ├─ offers/
+            │     │ └─ RedWidgetOffer.test.ts # Tests around RedWidgetOffer
+            │     ├─ services/
+            │       └─ BasketService.test.ts # Tests around BasketService
             │     └─ utils/
-            │     └─ index.test.ts # Tests around utility functions
+            │       └─ index.test.ts # Tests around utility functions
             ├─ package.json
             └─ tsconfig.json
 ```

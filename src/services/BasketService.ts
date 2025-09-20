@@ -1,6 +1,7 @@
 import { IDeliveryRule } from "../delivery/IDeliveryRule";
 import { Product, ProductCodes } from "../products/Product";
 import { LoggerService } from "./LoggerService";
+import { IOffer } from "../offers/IOffer";
 
 /**
  * Service to manage a shopping basket.
@@ -18,9 +19,12 @@ export class BasketService {
    * Creates a new BasketService.
    *
    * @param catalogue - Map of available products keyed by product codes
+   * @param offers - Array of offers to apply to the basket
+   * @param deliveryRule - Delivery rule to calculate delivery charges
    */
   constructor(
     private catalogue: Record<ProductCodes, Product>,
+    private offers: IOffer[],
     private deliveryRule: IDeliveryRule
   ) {}
 
@@ -44,18 +48,28 @@ export class BasketService {
    *
    * @returns The final total cost including discounts and delivery charges
    */
-  total (): number
-  {
+  total(): number {
     // calculate subtotal - sum of all item prices
     const subTotal = this.items.reduce((sum, p) => sum + p.price, 0);
-    this.logger.log("total", `SubTotal calculated: ${subTotal}`);
+    this.logger.log( "total", `SubTotal calculated: ${ subTotal }` );
+    
+    // calculate discount cumulative from applying offers
+    const discount = this.offers.reduce(
+      (sum, offer) => sum + offer.apply(this.items),
+      0
+    );
+    this.logger.log("total", `Discount applied: -${discount}`);
+
+    // calculate subtotal less discounts
+    const afterDiscount = subTotal - discount;
+    this.logger.log("total", `After Discount: ${afterDiscount}`);
 
     // charge for delivery based on rule given
-    const delivery = this.deliveryRule.calculate(subTotal);
+    const delivery = this.deliveryRule.calculate(afterDiscount);
     this.logger.log("total", `Delivery charge: ${delivery}`);
 
-    // calculate the final total
-    const final = +(subTotal + delivery).toFixed(2);
+    // calculate the final total (subtotal less discount plus delivery)
+    const final = +(afterDiscount + delivery).toFixed(2);
     this.logger.log("total", `Final total: ${final}`);
 
     // return final total
