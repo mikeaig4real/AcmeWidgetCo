@@ -15,13 +15,16 @@ This solution is structured in TypeScript, tested with **Vitest**, and can be ru
 
 ---
 
-## Folder Structure
+## Folder Structure (Key Files/Folders)
 
 acmewidgetco/
-├─ src/
-├─ tests/
-├─ package.json
-└─ tsconfig.json
+            ├─ src/
+            │     ├─ products/
+            │     │ ├─ sampleProducts.ts # Product samples
+            │     │ └─ Product.ts # Product types
+            ├─ tests/
+            ├─ package.json
+            └─ tsconfig.json
 
 ---
 
