@@ -17,14 +17,21 @@ This solution is structured in TypeScript, tested with **Vitest**, and can be ru
 
 ## Folder Structure (Key Files/Folders)
 
+```bash
 acmewidgetco/
             ├─ src/
             │     ├─ products/
             │     │ ├─ sampleProducts.ts # Product samples
             │     │ └─ Product.ts # Product types
+            │     ├─ services/
+            │     │ └─ BasketService.ts # Basket service logic
+            │     │ └─ LoggerService.ts # Logger service for simple debugging
             ├─ tests/
+            │     ├─ services/
+            │     └─ BasketService.test.ts # Tests around BasketService
             ├─ package.json
             └─ tsconfig.json
+```
 
 ---
 
