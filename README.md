@@ -54,7 +54,7 @@ acmewidgetco/
 - Clone the repository:  
 
 ```bash
-git clone [<repo-url>](https://github.com/mikeaig4real/AcmeWidgetCo.git)
+git clone [repo-url.git](https://github.com/mikeaig4real/AcmeWidgetCo.git)
 cd AcmeWidgetCo
 ```
 
