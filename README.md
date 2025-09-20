@@ -51,10 +51,10 @@ acmewidgetco/
 
 ## Installation
 
-- Clone the repository:  
+- Clone the repository:
 
 ```bash
-git clone [repo-url.git](https://github.com/mikeaig4real/AcmeWidgetCo.git)
+git clone https://github.com/mikeaig4real/AcmeWidgetCo.git
 cd AcmeWidgetCo
 ```
 
