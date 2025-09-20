@@ -29,7 +29,11 @@ export class BasketService {
    * @throws {Error} If the product code is not in the catalogue
    */
   add(productCode: ProductCodes) {
-    this.logger.log("add", `Called add with`, productCode);
+    const product = this.catalogue[productCode];
+    if (!product) throw new Error(`Unknown product code: ${productCode}`);
+    this.items.push(product);
+    this.logger.log("add", `Added product`, product);
+    this.logger.log("add", `Basket`, this.items);
   }
 
   /**
